@@ -1,29 +1,21 @@
-# VERA-MEL
+# Beyond Relevance: Mining and Prioritizing Diagnostic Evidence for Multimodal Entity Linking
+This is the code of our paper: Beyond Relevance: Mining and PrioritizingDiagnostic Evidence for Multimodal EntityLinking.
 <p align="center">
   <img src="framework.png"
        alt="VERA Framework"
        width="900">
 </p>
 
-Official release code for the VERA multimodal entity-linking system evaluated on WikiMEL and WikiDiverse. This repository is prepared for the ICASSP code-release track and contains the runnable source, configurations, and training/evaluation scripts.
-
-The public model implementation is named **VERA** throughout this repository. The model combines frozen multimodal encoders with text evidence selection, semantic mining, bidirectional reading, visual grounding, and reliability-aware score aggregation.
-
-
 ## Dependencies
 
-The reference environment is Linux, Python 3.10, CUDA 12.1, PyTorch 2.5.1, and Lightning 2.0.7. Create an isolated environment and install a CUDA-compatible PyTorch build first:
+We recommend using Conda to manage virtual environments, and we use Python version 3.10.
 
 ```bash
 conda create -n vera python=3.10
 conda activate vera
-# Install the PyTorch/torchvision pair appropriate for your CUDA driver.
-# For the reference CUDA 12.1 environment, use the official PyTorch index.
-pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu121
 pip install -r requirements.txt
 ```
-
-`mamba-ssm` may require a working CUDA compiler/toolchain matching the installed PyTorch build. If you use a different CUDA version, install compatible PyTorch, torchvision, and `mamba-ssm` versions together.
+Please install the specified versions of Python libraries according to the requirements.txt file.
 
 
 ## Dataset
