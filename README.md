@@ -25,7 +25,7 @@ Create a data root directory at ./data/ and place the downloaded datasets under 
 
 ## Running the code
 
-The wrappers are location-independent and can be launched from any working directory. `bash run.sh` starts the default WikiMEL VERA training run. `GPU` selects visible GPUs, `PYTHON` selects the Python executable, `DATASET` selects WikiMEL or WikiDiverse, and `CONFIG` overrides the selected YAML file.
+`bash run.sh` starts the default WikiMEL VERA training run. `GPU` selects visible GPUs, `PYTHON` selects the Python executable, `DATASET` selects WikiMEL or WikiDiverse, and `CONFIG` overrides the selected YAML file.
 
 
 
