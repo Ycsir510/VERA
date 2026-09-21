@@ -1,6 +1,6 @@
 # VERA-MEL
 <p align="center">
-  <img src="assets/vera_framework.png"
+  <img src="framework.png"
        alt="VERA Framework"
        width="900">
 </p>
