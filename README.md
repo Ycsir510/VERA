@@ -1,5 +1,5 @@
 # Beyond Relevance: Mining and Prioritizing Diagnostic Evidence for Multimodal Entity Linking
-This is the code of our paper: Beyond Relevance: Mining and PrioritizingDiagnostic Evidence for Multimodal EntityLinking.
+This is the code of our paper: Beyond Relevance: Mining and Prioritizing Diagnostic Evidence for Multimodal Entity Linking.
 <p align="center">
   <img src="framework.png"
        alt="VERA Framework"
@@ -20,6 +20,7 @@ Please install the specified versions of Python libraries according to the requi
 
 ## Dataset
 Download the datasets from [FissFuse dataset repository](https://github.com/pengfei-luo/FissFuse).
+
 Create a data root directory at ./data/ and place the downloaded datasets under this directory.
 
 
