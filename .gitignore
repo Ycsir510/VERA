@@ -1,0 +1,30 @@
+# Generated experiment outputs
+checkpoints/
+runs/
+rank_save/
+logs/
+*.log
+*.ckpt
+*.pt
+*.pth
+*.npy
+*.npz
+
+# Local data and model caches
+data/
+models/
+weights/
+.huggingface/
+.cache/
+__pycache__/
+*.py[cod]
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Editors and operating-system files
+.idea/
+.vscode/
+.DS_Store

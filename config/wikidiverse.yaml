@@ -1,0 +1,94 @@
+run_name: vera_wikidiverse
+language_model: ${oc.env:VERA_BERT_MODEL,bert-base-uncased}
+vision_model: ${oc.env:VERA_CLIP_MODEL,openai/clip-vit-base-patch32}
+bert_model: ${oc.env:VERA_BERT_MODEL,bert-base-uncased}
+clip_model: ${oc.env:VERA_CLIP_MODEL,openai/clip-vit-base-patch32}
+resnet_model: ${oc.env:VERA_RESNET_MODEL,microsoft/resnet-101}
+# The optimizer multiplies this value by batch_size / 16.
+# Effective LR at batch_size=128: 3e-5 * (128 / 16) = 2.4e-4.
+learning_rate: 3e-5
+num_workers: 4
+seed: 43
+task: wikidiverse
+wandb: false
+local_files: true
+
+data:
+  text_max_length: 77
+  batch_size: 128
+  embed_update_batch_size: 1024
+  eval_chunk_size: 10000
+  eval_batch_size: 16
+  num_train_candidate: 8
+  percentage: 1
+
+  wikimel:
+    folder: ${oc.env:VERA_WIKIMEL_ROOT,./data/WikiMEL}
+    train_data: WIKIMEL_train.jsonl
+    valid_data: WIKIMEL_valid.jsonl
+    test_data: WIKIMEL_test.jsonl
+    image_h5: wikimel_image.h5
+    entity: entities.jsonl
+
+  wikidiverse:
+    folder: ${oc.env:VERA_WIKIDIVERSE_ROOT,./data/WikiDiverse}
+    train_data: WIKIDIVERSE_train.jsonl
+    valid_data: WIKIDIVERSE_valid.jsonl
+    test_data: WIKIDIVERSE_test.jsonl
+    image_h5: image.h5py
+    entity: entities.jsonl
+
+model:
+  dim: 100
+  out_dim: 100
+  caler_dropout: 0.05
+  condition_dropout: 0.05
+  evidence_pool_dropout: 0.05
+  semantic_reader_dropout: 0.05
+  selector_hidden_dim: 100
+  selector_dropout: 0.05
+  selector_alpha_init: 0.05
+  visual_gate_hidden_dim: 100
+  visual_gate_dropout: 0.05
+  visual_gate_bias_init: 0.0
+  visual_gate_type: vector
+  score_aggregation: score_aware_gated_residual
+  reliability_hidden_dim: 200
+  reliability_dropout: 0.05
+  reliability_prior: [0.43, 0.17, 0.40]
+  reliability_delta_scale: 0.4
+  reliability_gate_bias_init: -2.0
+  pasm_hidden_dim: 100
+  pasm_dropout: 0.05
+  pasm_alpha_init: 0.0
+  agsf_d_state: 16
+  agsf_d_conv: 4
+  agsf_expand: 2
+  semantic_text_residual_init: 0.2
+  global_text_ratio: 0.7
+  reliable_score_weights: [0.43, 0.17, 0.40]
+
+loss:
+  final_weight: 1.0
+  aux_weight: 1.0
+  aux_loss_weights: [0.48, 0.12, 0.40]
+  sparse_weight: 0.02
+  sparse_eps: 1.0e-8
+  pasm_evidence_weight: 0.05
+  pasm_temperature: 0.07
+
+early_stopping:
+  #812patience: 16
+  patience: 32
+  min_delta: 0.0
+
+trainer:
+  accelerator: gpu
+  num_sanity_val_steps: 0
+  check_val_every_n_epoch: 1
+  strategy: ddp
+  precision: 16-mixed
+  max_epochs: 100
+  max_steps: 4416
+  gradient_clip_val: 1.0
+  gradient_clip_algorithm: norm

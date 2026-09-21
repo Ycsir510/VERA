@@ -1,0 +1,12 @@
+# Reference environment: Python 3.10, Linux, CUDA 12.1
+# Install a matching torch/torchvision build before this file; see README.md.
+lightning==2.0.7
+transformers==4.36.1
+mamba-ssm==2.2.6.post3
+omegaconf==2.3.0
+h5py==3.10.0
+Pillow==10.1.0
+numpy==1.24.1
+ujson==5.9.0
+tqdm==4.66.1
+torchvision==0.20.1
